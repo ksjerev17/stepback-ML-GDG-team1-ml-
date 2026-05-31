@@ -25,7 +25,7 @@ def check_force_mock_state() -> tuple[bool, str]:
 
 def check_drills_loaded() -> tuple[bool, str]:
     n = total_drills()
-    return (n == 77, f"드릴 로드: {n}개 (기대 77)")
+    return (n == 100, f"드릴 로드: {n}개 (기대 100)")
 
 
 def check_quota_room() -> tuple[bool, str]:
