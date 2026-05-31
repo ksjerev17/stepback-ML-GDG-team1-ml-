@@ -451,12 +451,12 @@ _CATEGORY_BENEFIT: dict[str, str] = {
     "sleep_circadian": "수면 리듬을 다시 잡는 데 도움이 되는 작은 습관이에요.",
 }
 _CATEGORY_MECHANISM: dict[str, str] = {
-    "cognitive_restructuring": "인지행동치료(CBT)의 생각 재구성 기법에 기반해요.",
+    "cognitive_restructuring": "인지행동(CBT)의 생각 재구성 기법에 기반해요.",
     "behavioral_activation": "우울 개입에서 효과가 검증된 행동활성화(BA) 원리예요.",
     "habit_design": "행동설계(Tiny Habits)·실행의도 연구에 기반해요.",
     "grounding": "불안·각성을 낮추는 그라운딩/호흡 기법에 기반해요.",
     "self_compassion": "자기자비(self-compassion) 연구에 기반해요.",
-    "sleep_circadian": "불면 인지행동치료(CBT-I) 원리에 기반해요.",
+    "sleep_circadian": "불면 개선(CBT-I) 원리에 기반해요.",
 }
 
 

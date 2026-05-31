@@ -2,8 +2,11 @@
 """금지 표현 검출 — pre-commit 훅용."""
 from __future__ import annotations
 
+import ast
+import io
 import re
 import sys
+import tokenize
 from pathlib import Path
 
 
@@ -35,6 +38,39 @@ def should_skip(path: Path) -> bool:
     return bool(parts & set(SKIP_PATHS_PARTS))
 
 
+def _py_excluded(text: str) -> tuple[set[int], dict[int, int]]:
+    """파이썬 소스에서 검사 제외 대상을 찾는다.
+
+    독스트링·주석은 '사용자 노출 문구'가 아니라 메타 텍스트(정책 설명·알고리즘
+    주석 등)이므로 금지표현 검사 대상이 아니다. 실제 사용자 문구(문자열 리터럴)는
+    그대로 검사한다.
+
+    반환: (독스트링이 차지하는 줄번호 집합, {줄번호: 주석 시작 컬럼}).
+    """
+    skip: set[int] = set()
+    comments: dict[int, int] = {}
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
+        return skip, comments
+    for node in ast.walk(tree):
+        if isinstance(node, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+            body = getattr(node, "body", [])
+            first = body[0] if body else None
+            if (isinstance(first, ast.Expr)
+                    and isinstance(getattr(first, "value", None), ast.Constant)
+                    and isinstance(first.value.value, str)):
+                for ln in range(first.lineno, (first.end_lineno or first.lineno) + 1):
+                    skip.add(ln)
+    try:
+        for tok in tokenize.generate_tokens(io.StringIO(text).readline):
+            if tok.type == tokenize.COMMENT:
+                comments.setdefault(tok.start[0], tok.start[1])
+    except (tokenize.TokenError, IndentationError):
+        pass
+    return skip, comments
+
+
 def scan(root: Path) -> list[tuple[Path, int, str, str]]:
     """결과: (path, lineno, line, reason)."""
     findings: list[tuple[Path, int, str, str]] = []
@@ -50,10 +86,17 @@ def scan(root: Path) -> list[tuple[Path, int, str, str]]:
             text = path.read_text(encoding="utf-8")
         except (UnicodeDecodeError, OSError):
             continue
+        skip_lines: set[int] = set()
+        comment_cols: dict[int, int] = {}
+        if path.suffix == ".py":
+            skip_lines, comment_cols = _py_excluded(text)
         for lineno, line in enumerate(text.splitlines(), start=1):
+            if lineno in skip_lines:
+                continue
+            scan_line = line[: comment_cols[lineno]] if lineno in comment_cols else line
             for rx, msg in patterns:
-                if rx.search(line):
-                    findings.append((path, lineno, line.strip()[:120], msg))
+                if rx.search(scan_line):
+                    findings.append((path, lineno, scan_line.strip()[:120], msg))
     return findings
 
 
