@@ -42,6 +42,7 @@ jobs:
       - name: pytest
         env:
           FORCE_MOCK: "true"
+          ADMIN_TOKEN: dev_token_local
           AUDIT_SALT: ci_test_salt_replace_in_prod_with_32_plus_chars
           PYTHONIOENCODING: utf-8
         run: |

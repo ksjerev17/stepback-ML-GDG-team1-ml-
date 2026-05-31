@@ -1,0 +1,13 @@
+# gitleaks 설정 — 기본 룰은 모두 유지하고, 문서용 placeholder만 오탐 제외.
+title = "stepback gitleaks config"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "문서(handoff)의 로컬 개발용 placeholder admin 토큰 — 실제 비밀이 아님"
+# 줄 전체에서 'x-admin-token: dev_token_local' 예시만 제외 (실제 키는 계속 탐지)
+regexTarget = "line"
+regexes = [
+  '''x-admin-token:\s*dev_token_local''',
+]
