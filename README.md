@@ -165,7 +165,61 @@ stepback/
 
 ---
 
-## 6. 실행 방법
+## 6. 사용한 ML / AI 기술
+
+이 서비스는 **거대 언어모델(LLM)** 로 텍스트를 이해하고, **고전적 온라인 학습(밴딧)** 으로 개인화하며, **규칙 기반 의사결정**으로 일관성·설명가능성·안전성을 확보하는 **하이브리드** 구조입니다. (단일 블랙박스 딥러닝 모델이 아니라, 각 단계에 가장 알맞은 기법을 조합)
+
+### (1) 자연어 이해 — Google Gemini (LLM)
+- **모델**: Gemini **2.5 Flash‑Lite**(1순위) / **2.5 Flash**(2순위). 계정에서 사용 가능한 모델을 조회해 자동 선택(`_pick_best_model`), 폐기(deprecated) 모델은 자동으로 건너뜀.
+- **SDK**: `google-genai`(신, FutureWarning 없음) 우선 → `google-generativeai`(구) 자동 폴백.
+- **역할**: 한국어 일기 1편 → **13개 심리 차원 점수(0~1)** + **evidence_span**(근거가 된 원문 구절) 추출.
+- **호출 정책**: `temperature=0.1`(거의 결정적), `max_output_tokens=400`, **지수 백오프 재시도**, 응답 JSON 파싱·복구. 프롬프트는 `w1/labeling_prompt_v3.md`의 지침 기반.
+- 📂 `ml_service/app/infra/llm_client.py`
+
+### (2) 키 없이도 동작하는 규칙 기반 Mock (Fallback NLP)
+- API 키가 없거나 `FORCE_MOCK`이면 **어휘 단서(linguistic cues) 매칭**으로 동일한 13차원을 산출 → 데모·CI·오프라인에서도 전 기능 동작.
+- **부정 가드(negation guard)**: 단서 바로 앞에 `안/않/아니/없`이 있으면 무효화 (예: "안 망할 것 같아"는 미래예측으로 치지 않음).
+- **체감 가중(diminishing)**: 서로 다른 단서 1·2·3개에 +0.35 / +0.20 / +0.10, 상한 0.7 (Mock의 한계를 정직하게 반영).
+- 📂 `ml_service/app/infra/llm_client.py` · 단서 정의 `w1/taxonomy_v7.json`
+
+### (3) 추천 엔진 — 규칙 라우팅 + 가중 점수 (Explainable · Deterministic)
+- **5단계 임상 라우팅**: 위기 → 인지 → 행동 → 감정 → 약신호(ask‑first).
+- **점수식(§6.1)**: `0.35·인지 + 0.40·행동 + 0.10·감정 + 0.25·맥락 affinity + 보너스 + 개인화 가산 − 최근/거부 패널티`.
+- **결정적(deterministic)**: LLM은 *점수만* 매기고 추천 *결정은 코드*가 한다 → 같은 입력 = 같은 결과 + "왜 이 드릴인지" 설명 가능 (LLM 챗봇과의 핵심 차별점).
+- 📂 `ml_service/app/core/recommender.py`
+
+### (4) 개인화 — 강화학습 계열 밴딧 (Multi‑Armed Bandit)
+- **UCB1**(Upper Confidence Bound, Auer et al.): `점수 = 평균보상 + c·√(2·ln N / n)` — **활용(exploitation) + 탐험(exploration)** 균형으로 사용자별 카테고리 선호를 학습.
+- **할인 UCB(Discounted UCB)**: 반감기(half‑life) 기반 **시간 감쇠** → **지수가중이동평균(EWMA, Sutton & Barto)** — 최근 피드백에 더 큰 가중.
+- **보상 설계**: 완료·도움됨(+), 거부(−). 카테고리별 통계를 SQLite에 read‑modify‑write. `user_id`는 **SHA‑256 해시**로만 저장.
+- 📂 `ml_service/app/core/personalization.py`
+
+### (5) 주간 코칭 · 자동 발견 — 통계 분석
+- **맥락 ↔ 패턴 상관(correlation) 분석**으로 "이러할 때 이런 경향이 보였어요" 식 관찰을 도출 (인과 단정 X, 상관만).
+- **30일 baseline** 대비 이번 주 비교 + 상태 추론(회복기 / 부담기 / 안정기 / 소진기 / 관찰기).
+- 모든 문장은 **사용자가 입력한 데이터에서만** 도출 → 환각(hallucination) 방지.
+- 📂 `ml_service/app/core/weekly_coaching.py` · `auto_discovery.py` · `baselines.py`
+
+### (6) 안전 · 전처리 NLP
+- **위기 신호 사전 차단**: 한국어 + 영어 + **띄어쓰기 우회**(공백 제거 후 매칭) + 은유 패턴 → **LLM 호출 *전*** 차단(위기 텍스트는 외부로 전송 0).
+- **PII 마스킹**(정규식), **욕설 감지** 시 intensity 가산, **evidence_span**은 어절(공백) 경계로 자연스럽게 추출.
+- 📂 `ml_service/app/infra/llm_client.py` · `app/infra/pii_masker.py`
+
+### 기술 스택 한 줄 요약
+| 영역 | 사용 기술 |
+|---|---|
+| LLM | Google Gemini 2.5 Flash‑Lite / Flash (`google-genai` SDK) |
+| 개인화 | UCB1 + Discounted UCB 밴딧 (온라인 강화학습 계열) |
+| 추천 결정 | 규칙 기반 라우팅 + 가중 선형 점수 (결정적·설명가능) |
+| NLP 전처리 | 어휘 단서 매칭, 부정 가드, 위기/PII/욕설 탐지 |
+| 통계 | 상관 분석, 시간 감쇠(EWMA), 30일 baseline |
+| 서빙 | FastAPI + Pydantic v2 · SQLite(학습 통계) |
+
+> **로드맵**: 베타 200+ 샘플 누적 후 **로지스틱 회귀(Logistic Regression)** 기반 v2 개인화 도입 예정 (현재는 밴딧). 상세 `NOTES.md` 참고.
+
+---
+
+## 7. 실행 방법
 
 ### 가장 빠른 길 (로컬, 키 없이 Mock)
 ```bash
@@ -197,7 +251,7 @@ ADMIN_TOKEN=dev_token_local python -m pytest -q   # 258 passed 가 정상
 
 ---
 
-## 7. 주요 API 한눈에
+## 8. 주요 API 한눈에
 
 | 메서드 | 경로 | 설명 |
 |---|---|---|
@@ -215,7 +269,7 @@ ADMIN_TOKEN=dev_token_local python -m pytest -q   # 258 passed 가 정상
 
 ---
 
-## 8. 안전 · 개인정보
+## 9. 안전 · 개인정보
 
 - **위기 차단**: 자해/자살 신호는 LLM 호출 **전에** 차단하고 상담 연락처(1393/1388/1577-0199) 안내. 위기 텍스트는 외부로 전송되지 않음.
 - **PII 마스킹**: 전화·이메일 등은 처리 전 마스킹.
@@ -224,7 +278,7 @@ ADMIN_TOKEN=dev_token_local python -m pytest -q   # 258 passed 가 정상
 
 ---
 
-## 9. 품질
+## 10. 품질
 
 - 자동 테스트 **258개** 통과 (3회 반복 동일).
 - 드릴 카탈로그 100개 **3회 검증** 통과 (스키마·라우팅·근거 일관성).
@@ -232,7 +286,7 @@ ADMIN_TOKEN=dev_token_local python -m pytest -q   # 258 passed 가 정상
 
 ---
 
-## 10. 더 읽을 문서
+## 11. 더 읽을 문서
 - 전체 인계: `handoff/ML_FINAL_HANDOFF.md`
 - 실행/확인 상세: `handoff/RUN_AND_VERIFY_GUIDE.md`
 - 팀별 연동: `handoff/MESSAGE_to_FE.md` · `MESSAGE_to_BE.md` · `MESSAGE_to_UX.md`
