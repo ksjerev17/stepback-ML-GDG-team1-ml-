@@ -1,0 +1,637 @@
+{
+  "_doc": "드릴 색상표 — 카테고리 기반 6색 팔레트. FE가 이 테이블을 저장해두고 drill.id만 보고 렌더.",
+  "palette": {
+    "cognitive_restructuring": {
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "behavioral_activation": {
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "habit_design": {
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "grounding": {
+      "name": "하늘",
+      "hex": "#38BDF8",
+      "token": "sky"
+    },
+    "self_compassion": {
+      "name": "분홍",
+      "hex": "#F472B6",
+      "token": "pink"
+    },
+    "sleep_circadian": {
+      "name": "남보라",
+      "hex": "#6366F1",
+      "token": "indigo"
+    }
+  },
+  "drill_color_by_id": {
+    "1": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "2": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "3": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "4": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "5": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "8": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "9": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "11": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "12": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "13": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "14": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "15": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "16": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "17": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "18": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "19": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "20": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "22": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "24": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "26": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "27": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "70": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "31": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "32": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "33": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "34": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "35": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "36": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "37": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "38": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "39": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "40": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "41": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "43": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "63": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "78": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "79": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "80": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "81": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "82": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "83": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "84": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "91": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "92": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "7": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "46": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "47": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "49": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "52": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "53": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "54": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "55": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "56": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "57": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "76": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "85": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "93": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "94": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "95": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "58": {
+      "category": "grounding",
+      "name": "하늘",
+      "hex": "#38BDF8",
+      "token": "sky"
+    },
+    "59": {
+      "category": "grounding",
+      "name": "하늘",
+      "hex": "#38BDF8",
+      "token": "sky"
+    },
+    "60": {
+      "category": "grounding",
+      "name": "하늘",
+      "hex": "#38BDF8",
+      "token": "sky"
+    },
+    "61": {
+      "category": "grounding",
+      "name": "하늘",
+      "hex": "#38BDF8",
+      "token": "sky"
+    },
+    "62": {
+      "category": "grounding",
+      "name": "하늘",
+      "hex": "#38BDF8",
+      "token": "sky"
+    },
+    "65": {
+      "category": "grounding",
+      "name": "하늘",
+      "hex": "#38BDF8",
+      "token": "sky"
+    },
+    "68": {
+      "category": "grounding",
+      "name": "하늘",
+      "hex": "#38BDF8",
+      "token": "sky"
+    },
+    "69": {
+      "category": "grounding",
+      "name": "하늘",
+      "hex": "#38BDF8",
+      "token": "sky"
+    },
+    "71": {
+      "category": "grounding",
+      "name": "하늘",
+      "hex": "#38BDF8",
+      "token": "sky"
+    },
+    "10": {
+      "category": "self_compassion",
+      "name": "분홍",
+      "hex": "#F472B6",
+      "token": "pink"
+    },
+    "72": {
+      "category": "self_compassion",
+      "name": "분홍",
+      "hex": "#F472B6",
+      "token": "pink"
+    },
+    "73": {
+      "category": "self_compassion",
+      "name": "분홍",
+      "hex": "#F472B6",
+      "token": "pink"
+    },
+    "75": {
+      "category": "self_compassion",
+      "name": "분홍",
+      "hex": "#F472B6",
+      "token": "pink"
+    },
+    "87": {
+      "category": "self_compassion",
+      "name": "분홍",
+      "hex": "#F472B6",
+      "token": "pink"
+    },
+    "77": {
+      "category": "sleep_circadian",
+      "name": "남보라",
+      "hex": "#6366F1",
+      "token": "indigo"
+    },
+    "88": {
+      "category": "sleep_circadian",
+      "name": "남보라",
+      "hex": "#6366F1",
+      "token": "indigo"
+    },
+    "89": {
+      "category": "sleep_circadian",
+      "name": "남보라",
+      "hex": "#6366F1",
+      "token": "indigo"
+    },
+    "90": {
+      "category": "sleep_circadian",
+      "name": "남보라",
+      "hex": "#6366F1",
+      "token": "indigo"
+    },
+    "96": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "97": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "98": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "99": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "100": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "101": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "102": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "103": {
+      "category": "self_compassion",
+      "name": "분홍",
+      "hex": "#F472B6",
+      "token": "pink"
+    },
+    "104": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "105": {
+      "category": "cognitive_restructuring",
+      "name": "주황",
+      "hex": "#F59E0B",
+      "token": "orange"
+    },
+    "106": {
+      "category": "grounding",
+      "name": "하늘",
+      "hex": "#38BDF8",
+      "token": "sky"
+    },
+    "107": {
+      "category": "self_compassion",
+      "name": "분홍",
+      "hex": "#F472B6",
+      "token": "pink"
+    },
+    "108": {
+      "category": "grounding",
+      "name": "하늘",
+      "hex": "#38BDF8",
+      "token": "sky"
+    },
+    "109": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "110": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "111": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "112": {
+      "category": "habit_design",
+      "name": "청록",
+      "hex": "#14B8A6",
+      "token": "teal"
+    },
+    "113": {
+      "category": "sleep_circadian",
+      "name": "남보라",
+      "hex": "#6366F1",
+      "token": "indigo"
+    },
+    "114": {
+      "category": "sleep_circadian",
+      "name": "남보라",
+      "hex": "#6366F1",
+      "token": "indigo"
+    },
+    "115": {
+      "category": "grounding",
+      "name": "하늘",
+      "hex": "#38BDF8",
+      "token": "sky"
+    },
+    "116": {
+      "category": "behavioral_activation",
+      "name": "초록",
+      "hex": "#10B981",
+      "token": "green"
+    },
+    "117": {
+      "category": "grounding",
+      "name": "하늘",
+      "hex": "#38BDF8",
+      "token": "sky"
+    },
+    "118": {
+      "category": "self_compassion",
+      "name": "분홍",
+      "hex": "#F472B6",
+      "token": "pink"
+    }
+  }
+}

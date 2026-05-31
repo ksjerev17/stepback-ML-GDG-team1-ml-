@@ -1,0 +1,46 @@
+[project]
+name = "stepback-ml"
+version = "0.1.0"
+requires-python = ">=3.11,<3.13"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+lint.select = ["E","W","F","I","B","C4","UP","N","S","A","COM","T20","SIM","ARG","ERA","PL","RUF"]
+lint.ignore = ["E501","COM812","PLR0913","S101"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101","S106","PLR2004","ARG001","ARG002","T201"]
+"scripts/**" = ["T201","S101"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+no_implicit_optional = true
+check_untyped_defs = true
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra --strict-markers --strict-config"
+testpaths = ["tests"]
+markers = [
+  "unit: 단위 (외부 의존 X)",
+  "integration: ML 통합",
+  "smoke: 통합 스모크",
+  "slow: 느린 테스트"
+]
+
+[tool.coverage.run]
+branch = true
+source = ["app"]
+omit = ["app/data/*", "tests/*"]
+
+[tool.coverage.report]
+exclude_lines = ["pragma: no cover", "raise NotImplementedError", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]

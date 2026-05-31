@@ -1,0 +1,51 @@
+# 출처: CLAUDE.md §13.2
+# 사용: pre-commit install && pre-commit install --hook-type pre-push
+repos:
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+        exclude: '\.lock$|package-lock\.json$|poetry\.lock$|\.ipynb$|w1/seed_sentences_50_v3\.json$'
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.21.0
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.7.4
+    hooks:
+      - id: ruff
+        args: [--fix]
+        files: '^ml_service/'
+      - id: ruff-format
+        files: '^ml_service/'
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.13.0
+    hooks:
+      - id: mypy
+        additional_dependencies: [pydantic, pydantic-settings, fastapi, httpx, types-requests]
+        files: '^ml_service/app/'
+
+  - repo: local
+    hooks:
+      - id: lint-copy
+        name: 금지 표현 검출 (CLAUDE.md §2.3)
+        entry: python -X utf8 ml_service/scripts/lint_copy.py ml_service/app
+        language: system
+        pass_filenames: false
+        files: '\.(py|md|json|txt)$'
+
+      - id: pytest-unit
+        name: pytest 단위
+        entry: bash -c 'cd ml_service && python -X utf8 -m pytest tests/unit -x -q'
+        language: system
+        pass_filenames: false
+
+      - id: block-w1-edits
+        name: w1/ 폴더 변경 차단 (§0.1)
+        entry: bash -c '! git diff --cached --name-only | grep -q "^w1/"'
+        language: system
+        pass_filenames: false

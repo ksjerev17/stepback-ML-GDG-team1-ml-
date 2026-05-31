@@ -1,0 +1,940 @@
+{
+  "_meta": "v6.4 신규 23개 — 갭 집중 (과잉일반화·독심술·당위진술·이분법·분노·social/sleep 맥락). 빈도 높은 패턴(미래예측·자기비난)은 신규 최소, 기존 보강으로 처리.",
+  "drills": [
+    {
+      "id": 96,
+      "title": "한 번 vs 늘",
+      "duration_min": 3,
+      "category": "cognitive_restructuring",
+      "legacy_id": "D96",
+      "instruction": "방금 '늘/항상/매번'이라고 느낀 그 일을, '이번 한 번'으로 바꿔 한 문장으로 다시 써보세요. 그리고 그 말이 사실이 아니었던 반례를 딱 하나만 떠올려 적어보세요.",
+      "patterns": {
+        "과잉일반화": {
+          "weight": 1.0,
+          "evidence_level": "primary",
+          "rationale": "Beck J.S.(2020) ch.11: overgeneralization은 단일 사례를 보편 규칙으로 확대 — 반례 1개로 규칙을 깨는 것이 표준 개입. Leahy(2017) Cognitive Therapy Techniques 'examining the evidence' 적용."
+        },
+        "이분법": {
+          "weight": 0.6,
+          "evidence_level": "secondary",
+          "rationale": "all-or-nothing과 빈번 공발 — 반례는 회색지대 인식도 촉진"
+        }
+      },
+      "behaviors": {},
+      "emotions": {
+        "불안": 0.8,
+        "우울": 0.7
+      },
+      "context_affinity": {
+        "self_condition_low": {
+          "weight": 0.5,
+          "rationale": "짧고 쓰기 1줄 — 에너지 낮아도 가능"
+        }
+      },
+      "source_primary": "Beck, J. S. (2020). Cognitive Behavior Therapy: Basics and Beyond (3rd ed.), ch. 11. Guilford.",
+      "source_supporting": "Eğeci & Yıldırım (2022). Overgeneralization as the strongest independent predictor of anxiety. (cf. SAD distortion studies)",
+      "source_short": "Beck(2020) 과잉일반화",
+      "evidence_level": "primary",
+      "triggers": [
+        "늘",
+        "항상",
+        "매번",
+        "맨날"
+      ],
+      "rationale": "단일 사건→보편 결론을 반례로 반증. 불안의 강력한 예측인자인 overgeneralization 직접 타겟.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 97,
+      "title": "예외 찾기 3분",
+      "duration_min": 3,
+      "category": "cognitive_restructuring",
+      "legacy_id": "D97",
+      "instruction": "'난 늘 이래'라는 생각이 들 때, 최근 2주 안에서 그렇지 않았던 순간 3개를 떠올려 적어보세요. 아주 사소한 것이어도 됩니다.",
+      "patterns": {
+        "과잉일반화": {
+          "weight": 0.95,
+          "evidence_level": "primary",
+          "rationale": "Beck(2020): 예외 탐색(exception finding)은 과잉일반화 도식을 약화. 해결중심(de Shazer 1988) 예외질문과 수렴."
+        },
+        "자기비난": {
+          "weight": 0.6,
+          "evidence_level": "secondary",
+          "rationale": "'난 늘 이래'식 labeling 완화"
+        }
+      },
+      "behaviors": {},
+      "emotions": {
+        "우울": 0.8,
+        "불안": 0.5
+      },
+      "context_affinity": {
+        "self_condition_low": {
+          "weight": 0.4,
+          "rationale": "회상 기반, 부담 적음"
+        }
+      },
+      "source_primary": "Beck, J. S. (2020). CBT: Basics and Beyond (3rd ed.). Guilford.",
+      "source_supporting": "de Shazer, S. (1988). Clues: Investigating Solutions in Brief Therapy. Norton. (exception questions)",
+      "source_short": "Beck(2020)/de Shazer 예외",
+      "evidence_level": "primary",
+      "triggers": [
+        "난 늘",
+        "맨날 나만",
+        "항상 실패"
+      ],
+      "rationale": "보편화된 자기서사에 구체적 예외를 대치해 도식 갱신.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 98,
+      "title": "확률 눈금",
+      "duration_min": 2,
+      "category": "cognitive_restructuring",
+      "legacy_id": "D98",
+      "instruction": "걱정하는 그 결과가 실제로 일어날 확률을 0~100%로 적어보세요. 그리고 '그렇게 본 근거'와 '반대 근거'를 한 줄씩 적은 뒤, 다시 확률을 매겨보세요.",
+      "patterns": {
+        "과잉일반화": {
+          "weight": 0.7,
+          "evidence_level": "secondary",
+          "rationale": "확률추정으로 보편적 비관 완화"
+        },
+        "미래예측": {
+          "weight": 0.85,
+          "evidence_level": "primary",
+          "rationale": "Clark & Beck(2010) Cognitive Therapy of Anxiety Disorders: probability estimation은 catastrophizing 표준 개입"
+        }
+      },
+      "behaviors": {},
+      "emotions": {
+        "불안": 1.0
+      },
+      "context_affinity": {
+        "self_condition_low": {
+          "weight": 0.3,
+          "rationale": "2분, 척도화"
+        }
+      },
+      "source_primary": "Clark, D. A., & Beck, A. T. (2010). Cognitive Therapy of Anxiety Disorders. Guilford.",
+      "source_supporting": "Kendall et al. (2005). Probability overestimation in anxiety.",
+      "source_short": "Clark&Beck(2010) 확률추정",
+      "evidence_level": "primary",
+      "triggers": [
+        "분명",
+        "100%",
+        "확실히 망"
+      ],
+      "rationale": "과대추정된 위협 확률을 근거 검토로 재보정.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 99,
+      "title": "근거 있어? 한 줄",
+      "duration_min": 2,
+      "category": "cognitive_restructuring",
+      "legacy_id": "D99",
+      "instruction": "'저 사람이 나를 ___하게 본다'고 느낀 그 생각을 쓰고, 바로 옆에 '그렇게 생각하는 직접 증거'가 있는지 한 줄로 적어보세요. 추측이면 '추측'이라고 표시하세요.",
+      "patterns": {
+        "독심술": {
+          "weight": 1.0,
+          "evidence_level": "primary",
+          "rationale": "Beck(2020) ch.11: mind-reading 핵심 개입은 '증거 대 추측' 구분. Clark & Wells(1995) 사회불안 모델: 타인 마음 추론은 내부단서 기반 왜곡."
+        }
+      },
+      "behaviors": {},
+      "emotions": {
+        "불안": 0.9,
+        "죄책": 0.4
+      },
+      "context_affinity": {
+        "social_stressful": {
+          "weight": 0.9,
+          "rationale": "대인 상황 직후 mind-reading 빈발"
+        }
+      },
+      "source_primary": "Clark, D. M., & Wells, A. (1995). A cognitive model of social phobia. In Heimberg et al. (Eds.), Social Phobia. Guilford.",
+      "source_supporting": "Beck, J. S. (2020). CBT: Basics and Beyond (3rd ed.). Guilford.",
+      "source_short": "Clark&Wells(1995) 독심술",
+      "evidence_level": "primary",
+      "triggers": [
+        "분명 날",
+        "나를 싫어",
+        "비웃",
+        "한심하게 봤"
+      ],
+      "rationale": "타인 의도 추론을 '증거 vs 추측'으로 라벨링해 사회불안 왜곡 차단.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 100,
+      "title": "다른 해석 3개",
+      "duration_min": 3,
+      "category": "cognitive_restructuring",
+      "legacy_id": "D100",
+      "instruction": "상대의 그 행동(읽씹/표정/말투)에 대해, 당신의 해석 말고 '다른 가능한 이유' 3가지를 적어보세요. 각각이 50%씩 가능하다고 상상해보세요.",
+      "patterns": {
+        "독심술": {
+          "weight": 0.95,
+          "evidence_level": "primary",
+          "rationale": "Wells(1997): 대안해석 생성(generating alternatives)은 mind-reading의 표준 재구성 기법"
+        },
+        "과잉일반화": {
+          "weight": 0.5,
+          "evidence_level": "secondary",
+          "rationale": "Wells(1997): 단일 신호를 전체 판단으로 키우는 과잉일반화를, 대안 해석 병치로 완화"
+        }
+      },
+      "behaviors": {},
+      "emotions": {
+        "불안": 0.8,
+        "분노": 0.5
+      },
+      "context_affinity": {
+        "social_stressful": {
+          "weight": 0.95,
+          "rationale": "대인 갈등·오해 상황"
+        }
+      },
+      "source_primary": "Wells, A. (1997). Cognitive Therapy of Anxiety Disorders. Wiley.",
+      "source_supporting": "Clark & Wells (1995). A cognitive model of social phobia.",
+      "source_short": "Wells(1997) 대안해석",
+      "evidence_level": "primary",
+      "triggers": [
+        "읽씹",
+        "답이 없",
+        "표정",
+        "무시당"
+      ],
+      "rationale": "단일 부정 해석에 동등 확률의 대안을 병치해 확신 약화.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 101,
+      "title": "물어볼 한 문장",
+      "duration_min": 2,
+      "category": "behavioral_activation",
+      "legacy_id": "D101",
+      "instruction": "상대가 어떻게 생각하는지 추측하는 대신, 직접 확인할 수 있는 부드러운 질문 한 문장을 만들어보세요. (예: '아까 내 말 혹시 기분 상했어?')",
+      "patterns": {
+        "독심술": {
+          "weight": 0.85,
+          "evidence_level": "primary",
+          "rationale": "Beck(2020): behavioral experiment — 추측 대신 현실 검증(reality testing)으로 mind-reading 반증"
+        }
+      },
+      "behaviors": {
+        "회피미루기": {
+          "weight": 0.6
+        }
+      },
+      "emotions": {
+        "불안": 0.7
+      },
+      "context_affinity": {
+        "social_stressful": {
+          "weight": 0.85,
+          "rationale": "관계 불확실성 해소 행동"
+        }
+      },
+      "source_primary": "Beck, J. S. (2020). CBT: Basics and Beyond (3rd ed.). Guilford. (behavioral experiments)",
+      "source_supporting": "Bennett-Levy et al. (2004). Oxford Guide to Behavioural Experiments in CT.",
+      "source_short": "Beck(2020) 행동실험",
+      "evidence_level": "primary",
+      "triggers": [
+        "물어보기 무섭",
+        "확인 못",
+        "그냥 참"
+      ],
+      "rationale": "추측을 직접 확인 행동으로 대체 — 회피 동반 시 노출 효과.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 102,
+      "title": "'해야 해'를 '하면 좋겠다'로",
+      "duration_min": 2,
+      "category": "cognitive_restructuring",
+      "legacy_id": "D102",
+      "instruction": "오늘 떠오른 '~해야 해 / ~했어야 했어' 문장을 하나 쓰고, '~하면 좋겠다 / ~할 수도 있었다'로 바꿔 다시 읽어보세요. 몸의 긴장이 달라지는지 느껴보세요.",
+      "patterns": {
+        "당위진술": {
+          "weight": 1.0,
+          "evidence_level": "primary",
+          "rationale": "Ellis(1962) REBT: 'musturbation'(절대적 당위) → 선호적 진술로 전환이 핵심. Beck(2020) should-statement 개입과 수렴."
+        }
+      },
+      "behaviors": {},
+      "emotions": {
+        "죄책": 0.9,
+        "불안": 0.6,
+        "분노": 0.4
+      },
+      "context_affinity": {
+        "self_condition_low": {
+          "weight": 0.4,
+          "rationale": "문장 변환 1개, 부담 적음"
+        }
+      },
+      "source_primary": "Ellis, A. (1962). Reason and Emotion in Psychotherapy. Lyle Stuart.",
+      "source_supporting": "David, Cotet et al. (2018). 50 years of REBT: A meta-analytic review. (efficacy)",
+      "source_short": "Ellis(1962) REBT 당위",
+      "evidence_level": "primary",
+      "triggers": [
+        "해야 해",
+        "했어야",
+        "당연히",
+        "반드시"
+      ],
+      "rationale": "경직된 당위를 선호적 언어로 완화 → 죄책·자기압박 감소.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 103,
+      "title": "남에게 한다면?",
+      "duration_min": 3,
+      "category": "self_compassion",
+      "legacy_id": "D103",
+      "instruction": "자신에게 '~했어야지'라고 한 그 말을, 같은 상황의 친한 친구에게도 똑같이 할지 생각해보세요. 친구에게 할 법한 말로 자신에게 다시 써보세요.",
+      "patterns": {
+        "당위진술": {
+          "weight": 0.8,
+          "evidence_level": "primary",
+          "rationale": "Gilbert(2009) CFT: 자기비판적 당위를 자비적 관점으로 전환"
+        },
+        "자기비난": {
+          "weight": 0.85,
+          "evidence_level": "primary",
+          "rationale": "Neff(2011): common humanity — 친구 관점은 자기자비 핵심 요소"
+        }
+      },
+      "behaviors": {},
+      "emotions": {
+        "죄책": 0.85,
+        "우울": 0.6
+      },
+      "context_affinity": {
+        "self_condition_low": {
+          "weight": 0.6,
+          "rationale": "위로 톤 — 컨디션 낮을 때 적합"
+        }
+      },
+      "source_primary": "Neff, K. (2011). Self-Compassion. William Morrow.",
+      "source_supporting": "Gilbert, P. (2009). The Compassionate Mind. Constable.",
+      "source_short": "Neff(2011) 자기자비",
+      "evidence_level": "primary",
+      "triggers": [
+        "내 탓",
+        "한심",
+        "바보같"
+      ],
+      "rationale": "당위·자기비난을 친구 관점(common humanity)으로 재구성.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 104,
+      "title": "기준 한 칸 낮추기",
+      "duration_min": 2,
+      "category": "cognitive_restructuring",
+      "legacy_id": "D104",
+      "instruction": "스스로에게 건 그 기준을, '충분히 괜찮은(good enough)' 수준으로 한 칸만 낮춰 다시 적어보세요. 100점이 아니라 70점이면 어떤 모습일까요?",
+      "patterns": {
+        "당위진술": {
+          "weight": 0.85,
+          "evidence_level": "primary",
+          "rationale": "Ellis REBT + Burns(1980) 완벽주의 개입: 'should' → 현실적 기준"
+        },
+        "이분법": {
+          "weight": 0.7,
+          "evidence_level": "secondary",
+          "rationale": "100 아니면 0 → 70점 회색지대 도입"
+        }
+      },
+      "behaviors": {
+        "동기저하": {
+          "weight": 0.5
+        }
+      },
+      "emotions": {
+        "불안": 0.7,
+        "우울": 0.6
+      },
+      "context_affinity": {
+        "self_condition_low": {
+          "weight": 0.5,
+          "rationale": "기준 완화로 시작 부담↓"
+        }
+      },
+      "source_primary": "Burns, D. (1980). Feeling Good: The New Mood Therapy. (perfectionism)",
+      "source_supporting": "Ellis, A. (1962). Reason and Emotion in Psychotherapy.",
+      "source_short": "Burns(1980) 완벽주의",
+      "evidence_level": "primary",
+      "triggers": [
+        "완벽",
+        "제대로 못",
+        "100",
+        "엉망"
+      ],
+      "rationale": "절대적 기준(당위/이분법)을 good-enough로 재설정.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 105,
+      "title": "회색지대 눈금",
+      "duration_min": 2,
+      "category": "cognitive_restructuring",
+      "legacy_id": "D105",
+      "instruction": "'성공/실패', '잘함/못함'처럼 둘로 나눈 그 판단을 0~100 눈금 위에 점으로 찍어보세요. 정확히 어디쯤인가요? 0도 100도 아닐 거예요.",
+      "patterns": {
+        "이분법": {
+          "weight": 1.0,
+          "evidence_level": "primary",
+          "rationale": "Beck(2020): all-or-nothing thinking → continuum technique(연속선 척도화)이 표준 개입"
+        }
+      },
+      "behaviors": {},
+      "emotions": {
+        "우울": 0.8,
+        "불안": 0.6
+      },
+      "context_affinity": {
+        "self_condition_low": {
+          "weight": 0.3,
+          "rationale": "척도화 2분"
+        }
+      },
+      "source_primary": "Beck, J. S. (2020). CBT: Basics and Beyond (3rd ed.). Guilford. (continuum technique)",
+      "source_supporting": "Padesky & Greenberger (1995). Mind Over Mood.",
+      "source_short": "Beck(2020) 연속선",
+      "evidence_level": "primary",
+      "triggers": [
+        "완전 실패",
+        "망함",
+        "전부",
+        "아예"
+      ],
+      "rationale": "이분법 판단을 연속선 위 한 점으로 재배치.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 106,
+      "title": "분노 6초 호흡",
+      "duration_min": 2,
+      "category": "grounding",
+      "legacy_id": "D106",
+      "instruction": "화가 올라올 때, 숨을 4초 들이쉬고 6초 내쉬기를 5번 반복해보세요. 내쉬는 숨을 더 길게 하는 게 핵심입니다.",
+      "patterns": {},
+      "behaviors": {},
+      "emotions": {
+        "분노": 1.0,
+        "불안": 0.6
+      },
+      "context_affinity": {
+        "social_stressful": {
+          "weight": 0.7,
+          "rationale": "갈등 직후 생리적 각성 진정"
+        }
+      },
+      "source_primary": "Gross, J. J. (2015). Emotion regulation: Current status and future prospects. Psychological Inquiry, 26(1), 1-26.",
+      "source_supporting": "Zaccaro et al. (2018). How breath-control can change your life: slow breathing & autonomic regulation. Frontiers in Human Neuroscience.",
+      "source_short": "Zaccaro(2018) 느린호흡",
+      "evidence_level": "primary",
+      "triggers": [
+        "화나",
+        "빡쳐",
+        "열받",
+        "짜증"
+      ],
+      "rationale": "연장 호기(longer exhalation)로 부교감 활성 → 분노 각성 하향. 정서조절 process model 중 response modulation.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 107,
+      "title": "보내지 않는 편지",
+      "duration_min": 5,
+      "category": "self_compassion",
+      "legacy_id": "D107",
+      "instruction": "화나게 한 그 상대(또는 상황)에게 하고 싶은 말을, 보내지 않을 편지로 솔직하게 다 써보세요. 다 쓰고 나면 그대로 닫아두세요.",
+      "patterns": {},
+      "behaviors": {},
+      "emotions": {
+        "분노": 0.95,
+        "우울": 0.5
+      },
+      "context_affinity": {
+        "social_stressful": {
+          "weight": 0.8,
+          "rationale": "대인 분노의 표현적 배출"
+        }
+      },
+      "source_primary": "Pennebaker, J. W. (1997). Writing about emotional experiences as a therapeutic process. Psychological Science, 8(3), 162-166.",
+      "source_supporting": "Frattaroli (2006). Experimental disclosure and its moderators: a meta-analysis. Psychological Bulletin.",
+      "source_short": "Pennebaker(1997) 표현적 글쓰기",
+      "evidence_level": "primary",
+      "triggers": [
+        "화나",
+        "용서 안",
+        "억울",
+        "분하"
+      ],
+      "rationale": "expressive writing으로 분노 정서 처리 — 반추 감소 효과.",
+      "ethics_flag": null,
+      "contraindications": [
+        "분노 반추 심화 경향 시 시간 제한"
+      ],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 108,
+      "title": "몸의 신호 읽기",
+      "duration_min": 2,
+      "category": "grounding",
+      "legacy_id": "D108",
+      "instruction": "지금 화/짜증이 몸 어디에 느껴지는지 찾아보세요 (턱, 어깨, 가슴...). 그 부위에 손을 얹고 숨을 한 번 내쉬며 힘을 빼보세요.",
+      "patterns": {},
+      "behaviors": {},
+      "emotions": {
+        "분노": 0.9,
+        "불안": 0.7
+      },
+      "context_affinity": {
+        "self_condition_low": {
+          "weight": 0.4,
+          "rationale": "신체 자각 — 짧음"
+        }
+      },
+      "source_primary": "Linehan, M. (2015). DBT Skills Training Manual (2nd ed.). Guilford. (TIP / body awareness)",
+      "source_supporting": "Mennin et al. (2007). Emotion regulation deficits. (somatic awareness in ER)",
+      "source_short": "Linehan(2015) DBT 신체자각",
+      "evidence_level": "primary",
+      "triggers": [
+        "답답",
+        "터질",
+        "욱"
+      ],
+      "rationale": "정서의 신체 표지 자각 → 정서조절(interoceptive awareness).",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 109,
+      "title": "딱 한 문장 먼저 보내기",
+      "duration_min": 2,
+      "category": "behavioral_activation",
+      "legacy_id": "D109",
+      "instruction": "관계가 어색해진 사람에게, 부담 없는 한 문장(안부·짧은 농담)을 먼저 보내보세요. 완벽한 말일 필요 없습니다.",
+      "patterns": {
+        "독심술": {
+          "weight": 0.5,
+          "evidence_level": "secondary",
+          "rationale": "'먼저 연락하면 이상하게 볼 것' 추측 반증"
+        }
+      },
+      "behaviors": {
+        "회피미루기": {
+          "weight": 0.85,
+          "evidence_level": "primary",
+          "rationale": "Jacobson 행동활성화: 회피된 사회 접촉의 점진적 재개"
+        }
+      },
+      "emotions": {
+        "불안": 0.7,
+        "우울": 0.6
+      },
+      "context_affinity": {
+        "social_stressful": {
+          "weight": 0.9,
+          "rationale": "사회적 위축·고립 대응"
+        }
+      },
+      "source_primary": "Martell, Dimidjian & Herman-Dunn (2010). Behavioral Activation for Depression. Guilford.",
+      "source_supporting": "Jacobson et al. (1996). A component analysis of CBT for depression.",
+      "source_short": "Martell(2010) 행동활성화",
+      "evidence_level": "primary",
+      "triggers": [
+        "연락 못",
+        "어색",
+        "혼자",
+        "다 멀어"
+      ],
+      "rationale": "회피된 사회 접촉을 최소 행동으로 재개 (BA + 독심술 반증).",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 110,
+      "title": "10분 산책 알람",
+      "duration_min": 1,
+      "category": "behavioral_activation",
+      "legacy_id": "D110",
+      "instruction": "지금 또는 오늘 안에, 딱 10분만 밖을 걷는 시간을 정해 알람을 맞춰보세요. 목적지 없이 동네 한 바퀴면 충분합니다.",
+      "patterns": {},
+      "behaviors": {
+        "동기저하": {
+          "weight": 0.9,
+          "evidence_level": "primary",
+          "rationale": "BA: 활동-기분 연결 — 신체 활동은 우울 행동활성화 핵심 항목"
+        }
+      },
+      "emotions": {
+        "우울": 0.85
+      },
+      "context_affinity": {
+        "self_condition_low": {
+          "weight": 0.5,
+          "rationale": "10분, 진입장벽 최소"
+        }
+      },
+      "source_primary": "Schuch et al. (2016). Exercise as a treatment for depression: A meta-analysis. Journal of Psychiatric Research, 77, 42-51.",
+      "source_supporting": "Martell et al. (2010). Behavioral Activation for Depression.",
+      "source_short": "Schuch(2016) 운동·우울 메타",
+      "evidence_level": "primary",
+      "triggers": [
+        "무기력",
+        "아무것도",
+        "나가기 싫"
+      ],
+      "rationale": "단시간 신체활동으로 행동활성화 — 우울 메타분석 근거.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 111,
+      "title": "2분 규칙 시작",
+      "duration_min": 1,
+      "category": "habit_design",
+      "legacy_id": "D111",
+      "instruction": "미루던 일을 '딱 2분만' 하는 버전으로 줄여보세요. (예: '보고서 쓰기' → '제목 한 줄만 쓰기') 2분 뒤 멈춰도 됩니다.",
+      "patterns": {},
+      "behaviors": {
+        "회피미루기": {
+          "weight": 0.95,
+          "evidence_level": "primary",
+          "rationale": "Fogg(2019) Tiny Habits: 행동을 최소 단위로 축소 → 시작 마찰 제거. Allen GTD 2분 규칙."
+        }
+      },
+      "emotions": {
+        "불안": 0.6,
+        "우울": 0.5
+      },
+      "context_affinity": {
+        "self_condition_low": {
+          "weight": 0.6,
+          "rationale": "최소 단위 — 에너지 낮을 때 최적"
+        }
+      },
+      "source_primary": "Fogg, B. J. (2019). Tiny Habits: The Small Changes That Change Everything. Houghton Mifflin.",
+      "source_supporting": "Gollwitzer & Sheeran (2006). Implementation intentions. (meta-analysis)",
+      "source_short": "Fogg(2019) Tiny Habits",
+      "evidence_level": "primary",
+      "triggers": [
+        "미루",
+        "시작 못",
+        "엄두",
+        "막막"
+      ],
+      "rationale": "회피·미루기를 2분 최소행동으로 분해해 착수 마찰 제거.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 112,
+      "title": "if-then 한 줄",
+      "duration_min": 2,
+      "category": "habit_design",
+      "legacy_id": "D112",
+      "instruction": "'만약 ___하면, 나는 ___한다'로 오늘 할 일 하나를 적어보세요. (예: '저녁 먹고 나면, 책상에 앉아 5분 정리한다')",
+      "patterns": {},
+      "behaviors": {
+        "회피미루기": {
+          "weight": 0.8,
+          "evidence_level": "primary",
+          "rationale": "Gollwitzer implementation intention(실행의도): if-then 계획은 목표달성 d=0.65 메타효과"
+        },
+        "동기저하": {
+          "weight": 0.7
+        }
+      },
+      "emotions": {
+        "우울": 0.5
+      },
+      "context_affinity": {
+        "self_condition_low": {
+          "weight": 0.4,
+          "rationale": "구조 제공으로 결정부담↓"
+        }
+      },
+      "source_primary": "Gollwitzer, P. M., & Sheeran, P. (2006). Implementation intentions and goal achievement: A meta-analysis. Advances in Experimental Social Psychology, 38, 69-119.",
+      "source_supporting": "Fogg, B. J. (2019). Tiny Habits.",
+      "source_short": "Gollwitzer(2006) 실행의도",
+      "evidence_level": "primary",
+      "triggers": [
+        "계획",
+        "못 지켜",
+        "작심삼일"
+      ],
+      "rationale": "if-then 실행의도로 행동 개시 자동화 — 강한 메타분석 근거.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 113,
+      "title": "잠 깨는 시간 고정",
+      "duration_min": 1,
+      "category": "sleep_circadian",
+      "legacy_id": "D113",
+      "instruction": "내일 일어날 시간을 하나로 정하고 알람을 맞춰보세요. 잠든 시간과 상관없이 같은 시간에 일어나는 것이 리듬 회복의 첫걸음입니다.",
+      "patterns": {},
+      "behaviors": {
+        "동기저하": {
+          "weight": 0.4
+        }
+      },
+      "emotions": {
+        "우울": 0.5
+      },
+      "context_affinity": {
+        "sleep_short": {
+          "weight": 0.95,
+          "rationale": "기상시각 고정은 일주기 anchor — 수면부족 회복 1순위"
+        }
+      },
+      "source_primary": "Morin, C. M., & Espie, C. A. (2003). Insomnia: A Clinical Guide to Assessment and Treatment. Springer. (CBT-I, 기상시각 고정)",
+      "source_supporting": "Czeisler et al. (1986). Bright light resets the human circadian pacemaker.",
+      "source_short": "Morin(2003) CBT-I",
+      "evidence_level": "primary",
+      "triggers": [
+        "못 잤",
+        "늦게 잤",
+        "피곤",
+        "리듬 깨"
+      ],
+      "rationale": "고정 기상시각으로 일주기 리듬 재동조 — CBT-I 핵심 행동.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 114,
+      "title": "걱정 적어두고 자기",
+      "duration_min": 3,
+      "category": "sleep_circadian",
+      "legacy_id": "D114",
+      "instruction": "잠들기 전 머릿속 걱정을 종이에 다 적고, '내일 ___시에 다시 본다'고 적어두세요. 그리고 종이를 침대 밖에 두세요.",
+      "patterns": {
+        "미래예측": {
+          "weight": 0.6,
+          "evidence_level": "secondary",
+          "rationale": "Harvey(2002) 불면 인지모델: 취침 전 미래 걱정·반추를 글로 외재화해 입면기 인지각성 감소"
+        }
+      },
+      "behaviors": {},
+      "emotions": {
+        "불안": 0.8
+      },
+      "context_affinity": {
+        "sleep_short": {
+          "weight": 0.9,
+          "rationale": "입면 지연의 주원인인 cognitive arousal 완화"
+        }
+      },
+      "source_primary": "Harvey, A. G. (2002). A cognitive model of insomnia. Behaviour Research and Therapy, 40(8), 869-893.",
+      "source_supporting": "Espie et al. (2006). The attention-intention-effort pathway in insomnia.",
+      "source_short": "Harvey(2002) 불면 인지모델",
+      "evidence_level": "primary",
+      "triggers": [
+        "생각이 많",
+        "잠이 안",
+        "걱정돼서"
+      ],
+      "rationale": "취침 전 걱정을 외재화(constructive worry)해 입면기 인지각성 감소.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 115,
+      "title": "지금 5감각",
+      "duration_min": 2,
+      "category": "grounding",
+      "legacy_id": "D115",
+      "instruction": "지금 보이는 것 5개, 들리는 것 4개, 만져지는 것 3개, 냄새 2개, 맛 1개를 차례로 찾아보세요. 생각이 미래로 달려갈 때 '지금'으로 데려오는 연습입니다.",
+      "patterns": {
+        "미래예측": {
+          "weight": 0.5,
+          "evidence_level": "secondary",
+          "rationale": "미래 위협 반추를 현재 감각으로 차단"
+        }
+      },
+      "behaviors": {},
+      "emotions": {
+        "불안": 0.95
+      },
+      "context_affinity": {
+        "self_condition_low": {
+          "weight": 0.5,
+          "rationale": "급성 불안 시 즉시 가능"
+        }
+      },
+      "source_primary": "Najavits, L. M. (2002). Seeking Safety: A Treatment Manual for PTSD and Substance Abuse. Guilford. (5-4-3-2-1 grounding)",
+      "source_supporting": "Linehan, M. (2015). DBT Skills Training Manual (2nd ed.).",
+      "source_short": "Najavits(2002) 그라운딩",
+      "evidence_level": "primary",
+      "triggers": [
+        "불안",
+        "공황",
+        "어지",
+        "숨이"
+      ],
+      "rationale": "5-4-3-2-1 감각 그라운딩으로 미래 위협 반추→현재 정향.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 116,
+      "title": "오늘의 작은 완료 1개",
+      "duration_min": 2,
+      "category": "behavioral_activation",
+      "legacy_id": "D116",
+      "instruction": "오늘 이미 해낸 아주 작은 일 하나를 적고, 스스로에게 '이건 한 거야'라고 인정해주세요. 이불 갠 것도, 밥 먹은 것도 됩니다.",
+      "patterns": {
+        "자기비난": {
+          "weight": 0.6,
+          "evidence_level": "secondary",
+          "rationale": "성취 누락 필터(mental filter) 교정"
+        }
+      },
+      "behaviors": {
+        "동기저하": {
+          "weight": 0.8,
+          "evidence_level": "primary",
+          "rationale": "BA: mastery 경험 기록 → 우울 무쾌감 완화"
+        }
+      },
+      "emotions": {
+        "우울": 0.85
+      },
+      "context_affinity": {
+        "self_condition_low": {
+          "weight": 0.7,
+          "rationale": "낮은 컨디션에서 성취 인정"
+        }
+      },
+      "source_primary": "Lewinsohn, P. M. (1974). A behavioral approach to depression. (mastery/pleasure)",
+      "source_supporting": "Martell et al. (2010). Behavioral Activation for Depression.",
+      "source_short": "Lewinsohn(1974) BA mastery",
+      "evidence_level": "primary",
+      "triggers": [
+        "아무것도 못",
+        "쓸모없",
+        "한 게 없"
+      ],
+      "rationale": "성취 누락 필터를 작은 완료 인정으로 교정 (mastery).",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 117,
+      "title": "감정에 이름 붙이기",
+      "duration_min": 2,
+      "category": "grounding",
+      "legacy_id": "D117",
+      "instruction": "지금 느끼는 감정에 가장 가까운 단어를 2~3개 골라 적어보세요. (예: 불안 + 서운함 + 지침) 이름을 붙이는 것만으로 강도가 조금 내려갑니다.",
+      "patterns": {},
+      "behaviors": {},
+      "emotions": {
+        "불안": 0.7,
+        "분노": 0.6,
+        "우울": 0.6,
+        "죄책": 0.5
+      },
+      "context_affinity": {
+        "self_condition_low": {
+          "weight": 0.5,
+          "rationale": "감정 식별 — 부담 적음"
+        }
+      },
+      "source_primary": "Lieberman et al. (2007). Putting feelings into words: Affect labeling disrupts amygdala activity. Psychological Science, 18(5), 421-428.",
+      "source_supporting": "Torre & Lieberman (2018). Putting feelings into words: Affect labeling as implicit emotion regulation.",
+      "source_short": "Lieberman(2007) affect labeling",
+      "evidence_level": "primary",
+      "triggers": [
+        "모르겠",
+        "복잡",
+        "뒤죽박죽",
+        "그냥 힘들"
+      ],
+      "rationale": "정서 명명(affect labeling)으로 편도체 활성↓ — 강한 신경과학 근거.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    },
+    {
+      "id": 118,
+      "title": "내 편 한 문장",
+      "duration_min": 2,
+      "category": "self_compassion",
+      "legacy_id": "D118",
+      "instruction": "지금 힘든 자신에게, 가장 다정한 사람이 해줄 법한 한 문장을 적어 소리 내어 읽어보세요. (예: '오늘 정말 애썼어, 그럴 만했어')",
+      "patterns": {
+        "자기비난": {
+          "weight": 0.85,
+          "evidence_level": "primary",
+          "rationale": "Neff(2011) self-kindness 구성요소 — 자기비판을 자비적 자기대화로 대체"
+        }
+      },
+      "behaviors": {},
+      "emotions": {
+        "우울": 0.8,
+        "죄책": 0.7
+      },
+      "context_affinity": {
+        "self_condition_low": {
+          "weight": 0.7,
+          "rationale": "위로 톤, 낮은 컨디션 최적"
+        }
+      },
+      "source_primary": "Neff, K. D., & Germer, C. K. (2013). A pilot study and RCT of the Mindful Self-Compassion program. Journal of Clinical Psychology, 69(1), 28-44.",
+      "source_supporting": "Neff, K. (2011). Self-Compassion. William Morrow.",
+      "source_short": "Neff&Germer(2013) MSC RCT",
+      "evidence_level": "primary",
+      "triggers": [
+        "힘들",
+        "지쳤",
+        "버티",
+        "울고 싶"
+      ],
+      "rationale": "자기자비 자기대화 — MSC RCT 효능 근거.",
+      "ethics_flag": null,
+      "contraindications": [],
+      "quality_audit": "approved"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# ML 런타임 데이터 (사용자 데이터/캐시 — 커밋 금지)
+ml_service/data/*.db
+logs/
+*.jsonl
+
+# 백업/임시
+*.backup*
+ml_service.backup*/
+*.bak_str_ids
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 환경변수 (키 노출 방지!)
+.env

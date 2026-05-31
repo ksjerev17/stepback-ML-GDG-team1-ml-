@@ -1,0 +1,143 @@
+{
+  "info": {
+    "name": "Step Back ML",
+    "_postman_id": "stepback-ml-v0.1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "P2가 BE 통합 검증에 사용. baseUrl 변수만 변경하면 됨."
+  },
+  "variable": [
+    {"key": "baseUrl", "value": "http://127.0.0.1:8001"},
+    {"key": "userId", "value": "u_demo"},
+    {"key": "week", "value": "2026-W21"},
+    {"key": "month", "value": "2026-05"}
+  ],
+  "item": [
+    {
+      "name": "01. healthz",
+      "request": {"method": "GET", "url": "{{baseUrl}}/healthz"}
+    },
+    {
+      "name": "02. label (normal)",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/label",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"text\":\"내일 발표 망할 것 같아\",\"user_id\":\"{{userId}}\"}"}
+      }
+    },
+    {
+      "name": "03. label (crisis)",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/label",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"text\":\"사라지고 싶다\",\"user_id\":\"u_crisis_demo\"}"}
+      }
+    },
+    {
+      "name": "04. label (empty 422)",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/label",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"text\":\"\",\"user_id\":\"u\"}"}
+      }
+    },
+    {
+      "name": "05. recommend (drill — cognitive)",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/recommend",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"label_result\": {\n    \"patterns\": {\"미래예측\": 0.7, \"독심술\": 0.0, \"자기비난\": 0.0, \"이분법\": 0.2, \"당위진술\": 0.0, \"과잉일반화\": 0.0},\n    \"behaviors\": {\"회피미루기\": 0.0, \"동기저하\": 0.0},\n    \"emotions\": {\"불안\": 0.7, \"우울\": 0.1, \"분노\": 0.0, \"죄책\": 0.0, \"중립\": 0.0},\n    \"intensity\": 0.5,\n    \"confidence\": 0.55,\n    \"evidence_span\": \"망할 것 같아\",\n    \"crisis_detected\": false,\n    \"calendar_dominant\": \"emotion_anxiety\",\n    \"model_used\": \"mock\",\n    \"labeled_at\": \"2026-05-22T03:14:00+00:00\"\n  },\n  \"context\": {\"self_condition\": 3, \"sleep_hours\": 7.0, \"social_today\": \"보통\", \"exercise_today\": 0.0},\n  \"user_id\": \"{{userId}}\",\n  \"recent_drill_ids\": []\n}"}
+      }
+    },
+    {
+      "name": "06. recommend (crisis_card)",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/recommend",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"label_result\": {\n    \"patterns\": {\"미래예측\": 0, \"독심술\": 0, \"자기비난\": 0, \"이분법\": 0, \"당위진술\": 0, \"과잉일반화\": 0},\n    \"behaviors\": {\"회피미루기\": 0, \"동기저하\": 0},\n    \"emotions\": {\"불안\": 0, \"우울\": 0, \"분노\": 0, \"죄책\": 0, \"중립\": 0},\n    \"intensity\": 0,\n    \"confidence\": 0,\n    \"evidence_span\": \"위기 신호 감지\",\n    \"crisis_detected\": true,\n    \"calendar_dominant\": \"crisis\",\n    \"model_used\": \"mock\",\n    \"labeled_at\": \"2026-05-22T03:14:00+00:00\"\n  },\n  \"context\": {\"self_condition\": 3, \"sleep_hours\": 7.0, \"social_today\": \"보통\", \"exercise_today\": 0.0},\n  \"user_id\": \"{{userId}}\"\n}"}
+      }
+    },
+    {
+      "name": "07. feedback (POST helpful)",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/feedback",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"user_id\":\"{{userId}}\",\"drill_id\":\"D01\",\"rating\":\"helpful\",\"recommended_at\":\"2026-05-22\"}"}
+      }
+    },
+    {
+      "name": "08. feedback (GET — 점수 비공개)",
+      "request": {"method": "GET", "url": "{{baseUrl}}/feedback?user_id={{userId}}"}
+    },
+    {
+      "name": "09. weekly (데모 entries)",
+      "request": {"method": "GET", "url": "{{baseUrl}}/weekly?user_id={{userId}}&week={{week}}"}
+    },
+    {
+      "name": "10. weekly/quiz (답 저장)",
+      "request": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/weekly/quiz",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"user_id\":\"{{userId}}\",\"week\":\"{{week}}\",\"predicted\":\"미래예측\"}"}
+      }
+    },
+    {
+      "name": "11. insights (POST user discovery)",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/insights",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"user_id\":\"{{userId}}\",\"text\":\"잠 부족 시 미래예측 증가하는 듯\",\"category\":\"context\",\"week_of\":\"{{week}}\"}"}
+      }
+    },
+    {
+      "name": "12. insights (GET toggle by category)",
+      "request": {"method": "GET", "url": "{{baseUrl}}/insights?user_id={{userId}}&category=context"}
+    },
+    {
+      "name": "13. reject drill",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/reject",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"user_id\":\"{{userId}}\",\"drill_id\":\"D01\"}"}
+      }
+    },
+    {
+      "name": "14. drill detail",
+      "request": {"method": "GET", "url": "{{baseUrl}}/drills/D01"}
+    },
+    {
+      "name": "15. baseline recompute (30일 entries)",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/baseline/recompute",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"user_id\":\"{{userId}}\",\"entries\":[],\"rejected_drills\":[]}"}
+      }
+    },
+    {
+      "name": "16. calendar (월간)",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/calendar",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"user_id\":\"{{userId}}\",\"month\":\"{{month}}\",\"entries\":[]}"}
+      }
+    },
+    {
+      "name": "17. reports/pending",
+      "request": {"method": "GET", "url": "{{baseUrl}}/reports/pending?user_id={{userId}}"}
+    },
+    {
+      "name": "18. export user data",
+      "request": {"method": "GET", "url": "{{baseUrl}}/export?user_id={{userId}}"}
+    }
+  ]
+}

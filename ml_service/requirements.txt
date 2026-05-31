@@ -1,0 +1,10 @@
+fastapi>=0.115.6
+uvicorn[standard]>=0.32.0
+pydantic>=2.10.4
+pydantic-settings>=2.7.0
+python-dotenv>=1.0.1
+httpx>=0.27.2
+
+# Gemini SDK — 신 패키지 (FutureWarning 없음). 키 없으면 Mock 폴백.
+# 선택: 구 패키지 google-generativeai도 자동 폴백 지원.
+google-genai>=0.3.0

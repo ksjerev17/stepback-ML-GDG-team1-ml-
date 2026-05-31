@@ -1,0 +1,443 @@
+{
+  "version": "v7",
+  "spec_version": "v9.3",
+  "changelog": "v5.1(6패턴·5감정·6맥락) → v6 → v7. 핵심 변경: (1) 행동 상태 2개 차원을 LLM 라벨링에 추가 (회피·미루기, 동기저하). (2) 행동 분야에 약 15%p 더 비중. (3) 성장은 LLM이 아닌 누적 데이터로 측정. (4) v9.3에서 약신호 분기 추가 — 약신호 + 컨디션<3 시 사용자에게 묻기.",
+  "design_principles": [
+    "LLM은 '지금 이 입력'을 분류한다. '이 사람이 성장했는지'는 판정하지 않는다.",
+    "회피·미루기·동기저하는 현대인 행동의 근본 요소이며, 안 다루면 추천 드릴조차 실행되지 않는다. 1급 라벨링 차원.",
+    "행동 분야에 약 15%p 더 비중: 카탈로그 행동·습관 계열 확대 (48%), 라우팅 행동 가중치 0.40.",
+    "성장은 LLM 추론이 아니라 검증 가능한 사용자 데이터로 측정: 드릴 실천율, 컨디션 추세, 2주 자기평가, 누적 발견.",
+    "v9.3 약신호 분기: 모든 신호 < 0.3이면 컨디션 ≥ 3 → 긍정 카드, 컨디션 < 3 → 사용자에게 묻기."
+  ],
+  "llm_labeled_dimensions": {
+    "note": "아래 3개 차원(인지 6 + 행동 2 + 감정 5)만 LLM이 라벨링한다.",
+    "cognitive_patterns": {
+      "count": 6,
+      "description": "Beck의 인지 왜곡 모델 기반. 생각의 왜곡을 포착.",
+      "list": {
+        "future_prediction": {
+          "name_ko": "미래예측",
+          "definition": "충분한 근거 없이 부정적 미래를 단정",
+          "user_facing_label": "미리 결론 내리기",
+          "user_facing_definition": "아직 일어나지 않은 일을 안 좋게 미리 정해두는 습관",
+          "user_facing_metaphor": "아직 읽지 않은 책의 마지막 장을 미리 슬프게 써두는 것",
+          "user_facing_question": "아직 일어나지 않은 일을, 안 좋게 미리 정해두고 있지는 않나요?",
+          "linguistic_cues": [
+            "망할 것",
+            "안 될 거",
+            "분명 ~할 거",
+            "어차피",
+            "또 ~할 거",
+            "결국엔",
+            "잘 안 될",
+            "망했어",
+            "끝났어",
+            "안 돼",
+            "어떡해",
+            "큰일",
+            "망칠 것"
+          ],
+          "source": "Beck 1976; J.Beck 2020 (Cognitive Behavior Therapy)",
+          "llm_key": "미래예측"
+        },
+        "mind_reading": {
+          "name_ko": "독심술",
+          "definition": "타인의 생각을 근거 없이 부정적으로 단정",
+          "user_facing_label": "남의 마음 단정하기",
+          "user_facing_definition": "확인하지 않은 채로 다른 사람이 나를 안 좋게 본다고 정하는 습관",
+          "user_facing_metaphor": "상대가 말하지 않은 대사를 내가 대신 써넣는 것",
+          "user_facing_question": "상대가 실제로 말하지 않은 생각을, 내가 대신 정하고 있지는 않나요?",
+          "linguistic_cues": [
+            "나를 싫어",
+            "나를 한심",
+            "분명 ~하게 봤",
+            "쟤는 ~생각",
+            "안 좋게 볼",
+            "비웃을",
+            "날 무시",
+            "이상하게 볼",
+            "실망했을",
+            "짜증났을",
+            "날 별로"
+          ],
+          "source": "Beck 1976; J.Beck 2020",
+          "llm_key": "독심술"
+        },
+        "self_blame": {
+          "name_ko": "자기비난",
+          "definition": "외부 사건의 원인을 과도하게 자기 탓으로 귀인",
+          "user_facing_label": "다 내 탓으로 돌리기",
+          "user_facing_definition": "여러 원인이 있는 일을 주로 내 잘못으로 정하는 습관",
+          "user_facing_metaphor": "여러 명이 함께 든 짐을 혼자 다 들었다고 여기는 것",
+          "user_facing_question": "여러 원인이 있는 일을, 주로 내 탓으로 돌리고 있지는 않나요?",
+          "linguistic_cues": [
+            "다 내 탓",
+            "내가 못해서",
+            "내 잘못",
+            "내가 그때",
+            "나 때문",
+            "나만 그래",
+            "내가 바보",
+            "나 같은",
+            "내가 문제",
+            "내 탓이야"
+          ],
+          "source": "Beck 1976; J.Beck 2020 (Personalization)",
+          "llm_key": "자기비난"
+        },
+        "dichotomy": {
+          "name_ko": "이분법",
+          "definition": "중간 지대 없이 전부 아니면 전무로 평가",
+          "user_facing_label": "전부 아니면 전무로 보기",
+          "user_facing_definition": "중간 단계 없이 완벽 아니면 실패로 정하는 습관",
+          "user_facing_metaphor": "온도를 뜨거움과 차가움 둘로만 나누는 것",
+          "user_facing_question": "중간 지대 없이, 전부 아니면 전무로 보고 있지는 않나요?",
+          "linguistic_cues": [
+            "완벽 아니면",
+            "완전 망쳤",
+            "전부 다",
+            "아예 못",
+            "100% 실패",
+            "다 끝났",
+            "다 망",
+            "전부 망",
+            "하나도 안",
+            "아무 의미",
+            "완전 실패"
+          ],
+          "source": "Beck 1976; J.Beck 2020 (All-or-nothing)",
+          "llm_key": "이분법"
+        },
+        "should_statement": {
+          "name_ko": "당위진술",
+          "definition": "'반드시 ~해야 한다'로 자신·타인을 경직되게 압박",
+          "user_facing_label": "반드시 해야 한다고 압박하기",
+          "user_facing_definition": "'꼭 ~해야만 한다'는 규칙으로 자신을 몰아붙이는 습관",
+          "user_facing_metaphor": "스스로에게 깐깐한 감독관을 붙여두는 것",
+          "user_facing_question": "'반드시 ~해야 한다'는 규칙으로, 자신을 몰아붙이고 있지는 않나요?",
+          "linguistic_cues": [
+            "반드시",
+            "꼭 ~해야",
+            "절대 안",
+            "당연히 ~해야",
+            "무조건",
+            "했어야",
+            "해야만",
+            "하면 안 됐",
+            "그랬어야"
+          ],
+          "source": "Ellis 1962 REBT; J.Beck 2020",
+          "llm_key": "당위진술"
+        },
+        "overgeneralization": {
+          "name_ko": "과잉일반화",
+          "definition": "한 번의 사건을 '항상/절대' 같은 광범위한 결론으로 확장",
+          "user_facing_label": "하나를 전체로 키우기",
+          "user_facing_definition": "한 번의 일을 '항상', '절대'처럼 전체로 넓히는 습관",
+          "user_facing_metaphor": "사진 한 장을 보고 그 사람의 평생을 단정하는 것",
+          "user_facing_question": "한 번의 일을 '항상', '절대'로 키우고 있지는 않나요?",
+          "linguistic_cues": [
+            "나는 항상",
+            "매번 ~해",
+            "절대 안 변",
+            "결국엔 ~해",
+            "한 번도 ~없",
+            "늘 그래",
+            "맨날",
+            "또 이래",
+            "역시 난",
+            "언제나",
+            "전부 다 이래"
+          ],
+          "source": "Beck 1976; J.Beck 2020",
+          "llm_key": "과잉일반화"
+        }
+      }
+    },
+    "behavior_signals": {
+      "count": 2,
+      "weight_note": "행동 분야에 약 15%p 더 비중. 라우팅에서 행동 매칭 가중치를 인지보다 높게 (0.40 vs 0.35).",
+      "description": "행동·실행을 막는 신호. 인지왜곡과 별개로 1급 라벨링 차원. 인지 신호가 약할 때 행동 신호가 라우팅의 결정 요인.",
+      "rationale": "Behavioral Activation 연구(Martell et al. 2010)에 따르면 회피는 미루기의 뿌리이며, 회피 상태에서는 '생각을 바꾸는' 인지 드릴이 작동하지 않는다. 행동 활성화로 먼저 움직임을 만든 뒤 인지 작업을 한다.",
+      "list": {
+        "avoidance": {
+          "name_ko": "회피·미루기",
+          "definition": "해야 할 일을 미루거나 직면을 회피하는 신호. 대상이 있는 회피.",
+          "user_facing_label": "미루고 피하고 싶은 마음",
+          "user_facing_definition": "해야 할 일을 뒤로 미루거나 시작 자체를 피하고 싶은 상태",
+          "user_facing_metaphor": "문 앞까지 갔다가 손잡이를 못 잡고 돌아서는 것",
+          "user_facing_question": "지금 해야 할 일을, 뒤로 미루거나 피하고 싶은 마음이 있나요?",
+          "linguistic_cues": [
+            "하기 싫어",
+            "하기 싫다",
+            "미루",
+            "미뤘",
+            "나중에",
+            "안 하게 돼",
+            "못 하겠어",
+            "손이 안 가",
+            "시작을 못",
+            "자꾸 딴짓",
+            "폰만",
+            "회피"
+          ],
+          "primary_drill_category": "behavioral_activation",
+          "source": "Martell, Dimidjian & Herman-Dunn 2010 (Behavioral Activation for Depression); Steel 2007 (Procrastination meta-analysis)",
+          "llm_key": "회피미루기"
+        },
+        "low_motivation": {
+          "name_ko": "동기저하·무기력",
+          "definition": "의욕·에너지가 떨어져 행동을 시작할 동력이 약한 신호. 대상이 불특정한 무기력.",
+          "user_facing_label": "의욕이 가라앉은 상태",
+          "user_facing_definition": "무언가를 할 의욕이나 에너지가 떨어져 있는 상태",
+          "user_facing_metaphor": "시동은 걸려 있는데 엑셀이 안 밟히는 것",
+          "user_facing_question": "지금 무언가를 할 의욕이나 에너지가 가라앉아 있나요?",
+          "linguistic_cues": [
+            "의미 없어",
+            "의욕이 없",
+            "귀찮",
+            "무기력",
+            "아무것도 하기",
+            "그냥 누워",
+            "지친다",
+            "에너지가 없",
+            "재미없",
+            "다 부질없",
+            "힘이 없",
+            "의욕 없",
+            "힘이 안",
+            "축 처"
+          ],
+          "primary_drill_category": "habit_design",
+          "source": "Martell et al. 2010; Beck Depression Inventory 에너지·흥미 항목",
+          "llm_key": "동기저하"
+        }
+      }
+    },
+    "emotions": {
+      "count": 5,
+      "description": "PANAS-X 부정정서 4 + 중립 안전판",
+      "list": {
+        "anxiety": {
+          "name_ko": "불안",
+          "linguistic_cues": [
+            "떨려",
+            "떨림",
+            "걱정",
+            "긴장",
+            "초조",
+            "두려",
+            "무서",
+            "불안",
+            "조마조마",
+            "심장이 빨리",
+            "안절부절",
+            "겁나"
+          ],
+          "source": "PANAS-X"
+        },
+        "depression": {
+          "name_ko": "우울",
+          "linguistic_cues": [
+            "슬퍼",
+            "슬프",
+            "공허",
+            "가라앉",
+            "처져",
+            "무겁",
+            "우울",
+            "허무",
+            "쓸쓸",
+            "외로워",
+            "외롭",
+            "텅 빈",
+            "마음이 비",
+            "눈물",
+            "울고 싶",
+            "다 의미 없",
+            "살아갈 이유"
+          ],
+          "source": "PANAS-X"
+        },
+        "anger": {
+          "name_ko": "분노",
+          "linguistic_cues": [
+            "짜증",
+            "화나",
+            "화가",
+            "답답",
+            "억울",
+            "분노",
+            "열받",
+            "빡쳐",
+            "빡친",
+            "씨발",
+            "좆같",
+            "개같",
+            "ㅅㅂ",
+            "ㅈㄴ",
+            "어이없",
+            "기가 막",
+            "환장하"
+          ],
+          "source": "PANAS-X"
+        },
+        "guilt": {
+          "name_ko": "죄책",
+          "linguistic_cues": [
+            "미안",
+            "죄송",
+            "후회",
+            "잘못했",
+            "그러지 말걸",
+            "내가 잘못",
+            "죄책",
+            "내 탓이",
+            "괜히 그랬"
+          ],
+          "source": "Tangney 2002; PANAS-X"
+        },
+        "neutral": {
+          "name_ko": "중립",
+          "source": "안전판 — 다른 4개 < 0.3일 때"
+        }
+      }
+    }
+  },
+  "non_llm_dimensions": {
+    "note": "LLM이 라벨링하지 않는다. 사용자 입력·피드백·누적 데이터로 측정.",
+    "context_variables": {
+      "count": 4,
+      "spec_v93_change": "v9.3에서 4개로 단순화 (이전 6개). 모두 슬라이더 통일.",
+      "description": "맥락 변수. 라우팅 점수 계산에 반영하되 화면에 변수명 노출 X.",
+      "required_all": {
+        "self_condition": {
+          "name_ko": "자기 컨디션",
+          "type": "slider 1~5",
+          "frequency": "매 입력마다 (1~3번)",
+          "user_facing": "오늘 어땠어요?"
+        },
+        "sleep_hours": {
+          "name_ko": "수면 시간",
+          "type": "slider 0~12h",
+          "frequency": "첫 입력만 (하루 1번)",
+          "user_facing": "어제 몇 시간 잤어요?"
+        },
+        "social_today": {
+          "name_ko": "사교 상태",
+          "type": "slider 3단계 (좋음/보통/갈등)",
+          "frequency": "매 입력마다 (1~3번)",
+          "user_facing": "오늘 사람들과의 시간은 어땠어요?"
+        },
+        "exercise_today": {
+          "name_ko": "운동 시간",
+          "type": "slider 0~12h",
+          "frequency": "첫 입력만 (하루 1번)",
+          "user_facing": "오늘 운동 얼마나 했어요?"
+        }
+      }
+    },
+    "growth_measurement": {
+      "measured_by": "사용자 피드백 + 누적 행동 데이터 + 주기적 자기평가",
+      "rationale": "성장·발전을 LLM이 한 줄 텍스트로 판정하는 것은 부정확하고 위험. 사용자가 좋게 보이려 검열한 입력에 속을 수 있고, '성장 신호 0.7' 같은 라벨은 검증 불가.",
+      "mechanisms": {
+        "drill_feedback": {
+          "name": "드릴 평가 누적",
+          "data_source": "매 드릴에 사용자가 남기는 '도움됨/별로' 평가 (당일 1회 수정 가능)",
+          "metric": "최근 N주간 '도움됨' 비율 추세",
+          "display_to_user": false,
+          "purpose": "내부 학습 데이터 — v9.3 합의에 따라 사용자에게 비공개",
+          "llm_involved": false
+        },
+        "condition_trend": {
+          "name": "컨디션 슬라이더 추세",
+          "data_source": "매 입력 시 사용자가 입력한 컨디션 1~5",
+          "metric": "주간 평균 컨디션 시계열, 캘린더 dominant 색 분포 변화",
+          "example": "지난 4주 평균 컨디션 2.8 → 3.4",
+          "llm_involved": false
+        },
+        "periodic_selfcheck": {
+          "name": "주기적 자기평가",
+          "data_source": "주간 리포트 자가 진단 퀴즈 (v9.3 신규)",
+          "metric": "사용자가 가장 잦았던 패턴을 맞췄는지 (메타인지 격차 측정)",
+          "question_format": "이번 주 가장 잦았던 패턴이 60%였어요. 어떤 패턴일까요? [4지선다]",
+          "llm_involved": false
+        },
+        "action_tracking": {
+          "name": "행동 실천 추적",
+          "data_source": "드릴 추천 후 사용자 행동 (시작하기 클릭, 완료 토글)",
+          "metric": "드릴 실행률, 실천율, 약신호 시 '드릴 받을래요?' 응답률",
+          "rationale": "행동 분야 focus와 연결. 인지 변화보다 측정 정직 — 행동은 했거나 안 했거나.",
+          "example": "이번 달 추천 드릴 12개 중 8개 실천 (67%)",
+          "llm_involved": false
+        }
+      }
+    }
+  },
+  "routing_logic": {
+    "description": "추천 라우팅. v9.3 약신호 분기 추가.",
+    "score_formula": "score = 0.35 * 인지매칭 + 0.40 * 행동매칭 + 0.25 * 맥락점수",
+    "priority_order": [
+      {
+        "step": 1,
+        "condition": "crisis_detected == true",
+        "action": "crisis_card 응답. 일반 드릴 차단. 1393/1388/1577-0199 안내."
+      },
+      {
+        "step": 2,
+        "condition": "인지 max >= 0.4 AND 행동 max < 0.5",
+        "action": "해당 인지 패턴 매칭 드릴 (cognitive_restructuring 등) 추천."
+      },
+      {
+        "step": 3,
+        "condition": "회피미루기 >= 0.5",
+        "action": "behavioral_activation 드릴 추천."
+      },
+      {
+        "step": 4,
+        "condition": "동기저하 >= 0.5",
+        "action": "habit_design 드릴 추천."
+      },
+      {
+        "step": 5,
+        "condition": "모든 신호 < 0.3 (약신호)",
+        "sub_branches": {
+          "5a_condition_low_grounding": "컨디션 ≤ 2 → 그라운딩 드릴",
+          "5b_sleep_short": "수면 < 5h → 수면 서카디안 드릴",
+          "5c_social_stress": "사교=갈등 → 자기 자비 드릴",
+          "5d_positive_card": "컨디션 ≥ 3 + 신호 약함 → 긍정 카드 (드릴 X)",
+          "5e_ask_user": "그 외 (애매) → 사용자에게 묻기 '드릴 받을래요?'"
+        },
+        "v93_note": "5e는 v9.3 신규. 강요 없는 자기 결정 강화."
+      }
+    ]
+  },
+  "drill_catalog_v6_3_summary": {
+    "version": "v6.3",
+    "total": 77,
+    "spec_change": "v6 (77) → v6.1 (68 제거) → v6.2 (77 행동 강화) → v6.3 (행동·습관 더 강화). 실행 중심 48%.",
+    "distribution": {
+      "cognitive_restructuring": "22 (29%)",
+      "behavioral_activation": "22 (29%)",
+      "habit_design": "15 (19%)",
+      "grounding": "9 (12%)",
+      "self_compassion": "5 (6%)",
+      "sleep_circadian": "4 (5%)"
+    },
+    "behavior_ratio": "행동 + 습관 = 48% (실행 중심)"
+  },
+  "calendar_color_logic": {
+    "spec_v93_change": "v9.3에서 dominant 차원 색 방식 채택. 점수 임계값 폐기.",
+    "description": "캘린더 한 칸 = 그날 입력 수만큼 점 (1~3개). 각 점이 시간대별 dominant 차원 색.",
+    "color_map": {
+      "감정_분노": "빨강",
+      "감정_불안": "노랑",
+      "감정_우울": "파랑",
+      "감정_죄책": "보라",
+      "인지_dominant": "주황",
+      "행동_dominant": "갈색",
+      "약신호_컨디션≥3": "초록 (긍정/평온)",
+      "약신호_컨디션<3": "회색 (무거움)"
+    }
+  }
+}

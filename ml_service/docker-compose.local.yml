@@ -1,0 +1,17 @@
+# 출처: CLAUDE.md §13.3 — 127.0.0.1만 listen
+services:
+  ml:
+    build: .
+    container_name: stepback-ml
+    ports:
+      - "127.0.0.1:8001:8001"   # 외부 노출 X
+    environment:
+      - PYTHONIOENCODING=utf-8
+      - FORCE_MOCK=${FORCE_MOCK:-true}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - AUDIT_SALT=${AUDIT_SALT:-replace_me_with_32_plus_random_hex_chars}
+    volumes:
+      - ../w1:/w1:ro            # 읽기 전용 마운트
+      - ../logs:/logs           # 감사 로그 호스트 보관
+      - ./data:/app/data        # SQLite 영속
+    restart: unless-stopped

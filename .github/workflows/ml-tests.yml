@@ -1,0 +1,85 @@
+name: ML Tests
+
+on:
+  push:
+    branches: [main, "feature/**"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: pytest + lint_copy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: ml_service/requirements*.txt
+
+      - name: Install deps
+        run: |
+          pip install -r ml_service/requirements.txt
+          pip install -r ml_service/requirements-dev.txt
+
+      - name: ruff (lint + format check)
+        run: |
+          cd ml_service
+          ruff check . || true   # 처음엔 경고만, 점진 강화
+          ruff format --check . || true
+
+      - name: mypy
+        continue-on-error: true   # 점진 도입
+        run: |
+          cd ml_service
+          mypy app
+
+      - name: pytest
+        env:
+          FORCE_MOCK: "true"
+          AUDIT_SALT: ci_test_salt_replace_in_prod_with_32_plus_chars
+          PYTHONIOENCODING: utf-8
+        run: |
+          cd ml_service
+          python -m pytest tests/ -v --tb=short
+
+      - name: lint_copy (금지 표현)
+        run: |
+          cd ml_service
+          python -X utf8 scripts/lint_copy.py app/
+
+      - name: pre_demo_check (5 항목)
+        env:
+          FORCE_MOCK: "true"
+          AUDIT_SALT: ci_test_salt_replace_in_prod_with_32_plus_chars
+        run: |
+          cd ml_service
+          python -X utf8 scripts/pre_demo_check.py
+
+  security:
+    name: secret scan + dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: pip-audit
+        run: |
+          pip install pip-audit
+          pip-audit -r ml_service/requirements.txt || true
