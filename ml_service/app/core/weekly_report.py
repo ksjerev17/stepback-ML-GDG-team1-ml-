@@ -113,7 +113,7 @@ def pattern_distribution(entries: Sequence[dict[str, Any]]) -> dict[str, float]:
         if not patterns:
             continue
         top, top_val = max(patterns.items(), key=lambda kv: kv[1])
-        if top_val >= 0.4:
+        if top_val >= 0.05:
             counter[top] += 1
             total += 1
     if total == 0:
@@ -191,7 +191,7 @@ def build_report(
             continue
         top, top_val = max(patterns.items(), key=lambda kv: kv[1])
         # v9.5: 표본 7개 (일 1회 × 7일) — 임계 0.4 → 0.35 완화
-        if top_val >= 0.35:
+        if top_val >= 0.05:
             pattern_counter[top] += 1
     total_strong = sum(pattern_counter.values())
     if total_strong > 0:
